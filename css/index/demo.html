@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable='no'">
+	<title>组件dialog</title>
+	<link rel="stylesheet" href="./index.css">
+</head>
+<body>
+
+	<!-- <div class="g-dialog-container">
+		<div class="dialog-window">
+			<div class="dialog-header waiting">
+
+			</div>
+			<div class="dialog-content">
+				你是否要清空购物车？
+			</div>
+			<div class="dialog-footer">
+				<button class="green">按钮1</button>
+				<button class="red">按钮2</button>
+			</div>
+		</div>
+	</div> -->
+	<style>
+		#div{position: fixed;width: 50px;height: 50px;background-color: red;z-index: 100}
+	</style>
+	<div id="div">
+		
+	</div>
+	<button id="btn1">没有传递任何参数</button>
+	<button id="btn2">弹出一个不带任何按钮，且是警告的框，并且2秒后自动关闭</button>
+	<button id="btn3">弹出一个由确认和取消按钮的成功框，点击按钮直接关闭</button>
+	<button id="btn4">弹出一个由确认按钮的警告框，点击按钮不关闭（需手动关闭）</button>
+	<button id="btn5">弹出一个多组合的按钮框，且按钮样式可定制</button>
+	<button id="btn6">弹出一个确认和删除的框，点击确认弹出加载框2秒后自动关闭，点击删除按钮把上一次框关闭</button>
+	<button id="btn7">弹出带动画的弹窗</button>
+	<script src="../../js/common/Zepto1.2.0.js"></script>
+	<script src="../../js/index/index.js"></script>
+	<script>
+
+	$('#btn1').click(function(){
+		var d = $.dialog();
+	})
+
+	$('#btn2').click(function(){
+		var d = $.dialog({
+			type:'warning',
+			message:'2秒后关闭',
+			delay:2000
+		})
+	})
+	$('#btn3').click(function(){
+		var d = $.dialog({
+			type:'ok',
+			message:'2秒后关闭',
+			delay:2000,
+			buttons:[
+				{
+					type:'red',
+					text:'确认',
+					callback:function(){
+						alert('点击直接关闭');					}
+				},
+				{
+					type:'green',
+					text:'去掉',
+					callback:function(){
+						alert('点击我不会关闭');
+						return false;
+					}
+				}
+			]
+		})
+	})
+	$('#btn4').click(function(){
+		var d = $.dialog({
+			type:'ok',
+			buttons:[
+				{
+					type:'green',
+					text:'点击',
+					callback:function(){
+						alert('点击我不会关闭');
+						return false;
+					}
+				}
+			]
+		})
+	});
+	$('#btn5').click(function(){
+		var d = $.dialog({
+			type:'warning',
+			buttons:[
+				{
+					type:'red',
+					text:'确认',
+					callback:function(){
+						alert('点击直接关闭');					}
+				},
+				{
+					type:'green',
+					text:'去掉',
+					callback:function(){
+						alert('点击我不会关闭');
+						return false;
+					}
+				},
+				{
+					text:'默认',
+					callback:function(){
+						alert('点击我不会关闭');
+						return false;
+					}
+				}
+			]
+		})
+	});
+	$('#btn6').click(function(){
+		var d = $.dialog({
+			type:'warning',
+			message:'我叫警告框',
+			buttons:[
+				{
+					type:'green',
+					message:'确认',
+					callback:function(){
+						$.dialog({
+							type:'waiting',
+							delay:'2000'						
+						})	
+						return false;				}
+				},
+				{
+					type:'red',
+					text:'删除',
+					callback:function(){
+						$.dialog({
+							type:'warning',
+							message:'确定删除吗？',
+							callback:function(){
+								d.close();
+
+							}
+						});
+						return false;
+					}
+				},
+				{
+					text:'默认',
+					callback:function(){
+						alert('点击我不会关闭');
+						return false;
+					}
+				}
+			]
+		})
+	})
+	$('#btn7').click(function(){
+		var d = $.dialog({
+			type:'warning',
+			message:'你想干嘛？',
+			buttons:[
+				{
+					type:'green',
+					text:'你好？'
+				},
+				{
+					type:'red',
+					text:'不好！'
+				}
+			],
+			effect:true
+		})
+	})
+	</script>
+	
+	// <script>
+	// 	var dialog = $.dialog({
+	// 		//对话框提示信息
+	// 		message:"你好好吗？",
+	// 		//对话框宽度,高
+	// 		//width:100,
+	// 		// height:50,
+	// 		//对话框类型
+	// 		type:"warning",
+	// 		//按钮配置
+	// 		buttons:[
+	// 			{
+	// 				type:'red',
+	// 				text:'不好',
+	// 				callback:function(){
+	// 					alert(1000);
+
+
+	// 					return false;
+	// 				}
+	// 			},
+	// 			{
+	// 				type:'green',
+	// 				text:'好啊',
+	// 				callback:function(){
+	// 					alert(2)
+	// 				}
+	// 			}
+	// 		],
+	// 		//弹出框延迟多久关闭
+	// 		//delay:3000,
+	// 		//对话框遮罩层透明度
+	// 		maskOpacity:0.3
+	// 	});
+	// // var dialog = new Dialog();
+	// </script>
+</body>
+</html>

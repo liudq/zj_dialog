@@ -1,0 +1,129 @@
+*{margin: 0;padding: 0}
+body{font-size: 12px;padding: 20px;}
+button{display: block;width: 100%;padding: 10px;margin: 20px 0; background-color: green;border-radius: 3px;color: #fff;border: 1px solid #ddd;}
+
+/*dialog*/
+.g-dialog-container{position: fixed;;left: 0;top: 0;width: 100%;height: 100%;background-color: rgba(0,0,0,0.6);
+
+ /*display: -webkit-box;
+ -webkit-box-pack:center;
+ -webkit-box-align:center;
+*/
+display: -webkit-flex;
+-webkit-justify-content:center;
+-webkit-align-items:center;
+z-index: 9999;
+}
+.g-dialog-container .dialog-window{padding: 1em;border-radius: 10px;background-color: rgba(0,0,0,0.8);
+
+	-webkit-transition:all .3s cubic-bezier(0.63, 0.24, 0.47, 1.52);
+}
+.g-dialog-container .dialog-window .dialog-header{width: 50px;height: 50px;margin: 0 auto;
+	border:2px solid #fff;
+	border-radius: 50%;
+	display: -webkit-flex;
+	-webkit-justify-content:center;
+	-webkit-align-items:center;
+}
+.g-dialog-container .dialog-window .dialog-header.ok:after{
+	content: '';
+	display: block;
+	width: 30px;
+	height: 10px;
+	border:2px solid #fff;
+	border-width: 0 0 2px 2px;
+	-webkit-transform:rotate(-50deg);
+
+}
+.g-dialog-container .dialog-window .dialog-header.warning{
+	-webkit-transform:rotate(90deg);
+}
+.g-dialog-container .dialog-window .dialog-header.warning:before{
+	content: '';
+	display: block;
+	width: 20px;
+	height: 5px;
+	background: #fff;
+}
+.g-dialog-container .dialog-window .dialog-header.warning:after{
+	content: '';
+	display: block;
+	width: 5px;
+	height: 5px;
+	background: #fff;
+	margin-left: 5px;
+}
+@-webkit-keyframes waiting-1{
+	0%{
+		-webkit-transform:translate(-5px,0);
+	}
+	50%{
+		-webkit-transform:translate(10px,0);
+	}
+	100%{
+		-webkit-transform:translate(-5px,0);
+
+	}
+}
+@-webkit-keyframes waiting-2{
+	0%{
+		-webkit-transform:translate(5px,0);
+	}
+	50%{
+		-webkit-transform:translate(-10px,0);
+	}
+	100%{
+		-webkit-transform:translate(5px,0);
+
+	}
+}
+
+
+.g-dialog-container .dialog-window .dialog-header.waiting:before{
+	content: '';
+	display: block;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background: yellow;
+	-webkit-animation:waiting-1 0.8s infinite;
+}
+.g-dialog-container .dialog-window .dialog-header.waiting:after{
+	content: '';
+	display: block;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background: red;
+	-webkit-animation:waiting-2 0.8s infinite;
+}
+.g-dialog-container .dialog-window .dialog-content{
+	padding: 1em 1em 0;
+	color:#fff;
+	line-height: 180%;
+}
+.g-dialog-container .dialog-window .dialog-footer{
+	padding: 1em 1em 0;
+	display: -webkit-flex;
+	-webkit-justify-content:center;
+	-webkit-align-items:center;
+
+}
+.g-dialog-container .dialog-window .dialog-footer button{
+	-webkit-appearance:normal;
+	background: rgba(255,255,255,0.5);
+	padding: 0.8em 0.8em;
+	border:none;
+	color: #eee;
+	border-radius: 5px;
+	margin:0.3em;text-shadow:#666 1px 1px 0;
+	
+}
+.g-dialog-container .dialog-window .dialog-footer button.green{
+	background-color: rgba(2,202,200,0.8)
+	
+}
+.g-dialog-container .dialog-window .dialog-footer button.red{
+	background-color: rgba(251,23,50,0.8)
+	
+}
